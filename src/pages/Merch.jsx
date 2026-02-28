@@ -68,16 +68,12 @@ export default function Merch() {
                 borderBottom: `1px solid ${hoveredProduct === i ? p.color + '40' : 'rgba(255,255,255,0.04)'}`,
                 transition: 'border-color 0.4s',
               }}>
-                <motion.div
-                  animate={{
-                    y: [0, -10, 0],
-                    rotate: hoveredProduct === i ? [0, -3, 3, 0] : 0,
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.2 }}
+                <div
+                  className="carousel-emoji-float"
                   style={{ fontSize: '5rem' }}
                 >
                   {p.emoji}
-                </motion.div>
+                </div>
                 {p.tag && (
                   <motion.div
                     initial={{ x: 20, opacity: 0 }}

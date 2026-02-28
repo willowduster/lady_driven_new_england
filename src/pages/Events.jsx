@@ -87,13 +87,12 @@ export default function Events() {
 
               {/* Status */}
               <div style={{ textAlign: 'right', minWidth: '90px' }}>
-                <motion.div
-                  animate={{ opacity: [1, 0.4, 1] }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
+                <div
+                  className="hero-subtitle-pulse"
                   style={{ fontSize: '0.7rem', fontWeight: 600, color: e.color, letterSpacing: '1px', marginBottom: '10px', fontFamily: 'Orbitron' }}
                 >
                   {e.spots}
-                </motion.div>
+                </div>
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${e.color}40` }}
                   whileTap={{ scale: 0.95 }}

@@ -50,17 +50,7 @@ body::before {
   z-index: 9999;
 }
 
-/* Film grain noise */
-body::after {
-  content: '';
-  position: fixed;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0.4;
-}
+/* Film grain removed for performance */
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -311,4 +301,126 @@ body::after {
 
 a, button {
   transition: all 0.3s var(--ease-out-expo);
+}
+
+/* ====== CSS-only hero animations (replaces framer-motion infinites) ====== */
+
+/* Particles — pure CSS float-up animation */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particle-rise 5s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes particle-rise {
+  0%   { transform: translateY(0) scale(0);   opacity: 0; }
+  20%  { transform: translateY(-60px) scale(1.2); opacity: 0.7; }
+  100% { transform: translateY(-220px) scale(0); opacity: 0; }
+}
+
+/* Floating orbs — CSS-only drift, NO blur filter */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+.hero-orb-1 {
+  left: 10%; top: 20%; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(123,47,190,0.12) 0%, transparent 70%);
+  animation: orb-drift-1 8s ease-in-out infinite;
+}
+.hero-orb-2 {
+  left: 75%; top: 30%; width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(255,45,120,0.12) 0%, transparent 70%);
+  animation: orb-drift-2 10s ease-in-out infinite;
+}
+.hero-orb-3 {
+  left: 50%; top: 60%; width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(0,245,212,0.12) 0%, transparent 70%);
+  animation: orb-drift-1 12s ease-in-out infinite reverse;
+}
+
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(25px, -35px) scale(1.1); }
+  50%  { transform: translate(-15px, 15px) scale(0.95); }
+  75%  { transform: translate(10px, -10px) scale(1.05); }
+}
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-20px, -30px) scale(1.15); }
+  66%  { transform: translate(15px, 10px) scale(0.9); }
+}
+
+/* Horizon glow line */
+.hero-horizon-glow {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--purple), var(--pink), var(--teal), var(--purple), transparent);
+  animation: horizon-color 6s ease-in-out infinite;
+}
+@keyframes horizon-color {
+  0%, 100% { box-shadow: 0 0 40px 10px rgba(123,47,190,0.2); }
+  33%  { box-shadow: 0 0 60px 15px rgba(255,45,120,0.3); }
+  66%  { box-shadow: 0 0 40px 10px rgba(0,245,212,0.2); }
+}
+
+/* Subtitle pulse */
+.hero-subtitle-pulse {
+  animation: subtitle-pulse 3s ease-in-out infinite;
+}
+@keyframes subtitle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Cursor blink */
+.hero-cursor-blink {
+  animation: cursor-blink 0.6s steps(1) infinite;
+}
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Scroll indicator bounce */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Emoji float animation (carousel, merch, join team) */
+.carousel-emoji-float {
+  animation: emoji-float 3s ease-in-out infinite;
+}
+@keyframes emoji-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Reduced motion — disable ALL animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

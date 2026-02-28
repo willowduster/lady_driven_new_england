@@ -1,66 +1,9 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import CarCarousel from './CarCarousel';
-
-function Particle({ style, delay, dur }) {
-  return (
-    <motion.div
-      style={{
-        position: 'absolute',
-        width: '2px',
-        height: '2px',
-        borderRadius: '50%',
-        ...style,
-      }}
-      animate={{
-        y: [-20, -250],
-        x: [0, (Math.random() - 0.5) * 60],
-        opacity: [0, 0.8, 0],
-        scale: [0, 1.5, 0],
-      }}
-      transition={{
-        duration: dur,
-        repeat: Infinity,
-        delay,
-        ease: 'easeOut',
-      }}
-    />
-  );
-}
-
-function FloatingOrb({ color, size, x, y, duration }) {
-  return (
-    <motion.div
-      animate={{
-        x: [0, 30, -20, 10, 0],
-        y: [0, -40, 20, -10, 0],
-        scale: [1, 1.2, 0.9, 1.1, 1],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
-      style={{
-        position: 'absolute',
-        left: x,
-        top: y,
-        width: size,
-        height: size,
-        borderRadius: '50%',
-        background: `radial-gradient(circle, ${color}20 0%, transparent 70%)`,
-        filter: `blur(${parseInt(size) / 3}px)`,
-      }}
-    />
-  );
-}
 
 export default function HeroSection() {
   const sectionRef = useRef(null);
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-  const smoothX = useSpring(mouseX, { damping: 50, stiffness: 100 });
-  const smoothY = useSpring(mouseY, { damping: 50, stiffness: 100 });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -69,27 +12,7 @@ export default function HeroSection() {
 
   const titleY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const gridY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const carouselY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-
-  const handleMouseMove = useCallback((e) => {
-    const rect = sectionRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mouseX.set((e.clientX - rect.left) / rect.width);
-    mouseY.set((e.clientY - rect.top) / rect.height);
-  }, [mouseX, mouseY]);
-
-  const [particles] = useState(() =>
-    Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      top: `${40 + Math.random() * 60}%`,
-      background: ['var(--pink)', 'var(--teal)', 'var(--purple-bright)'][Math.floor(Math.random() * 3)],
-      delay: Math.random() * 4,
-      dur: Math.random() * 3 + 3,
-      size: Math.random() * 2 + 1,
-    }))
-  );
 
   // Typed text effect for tagline
   const [typedText, setTypedText] = useState('');
@@ -107,10 +30,20 @@ export default function HeroSection() {
     return () => clearInterval(timer);
   }, []);
 
+  // 15 CSS-animated particles (down from 50 JS-animated)
+  const particles = Array.from({ length: 15 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${40 + Math.random() * 60}%`,
+    color: ['var(--pink)', 'var(--teal)', 'var(--purple-bright)'][i % 3],
+    delay: `${(Math.random() * 4).toFixed(1)}s`,
+    dur: `${(Math.random() * 3 + 4).toFixed(1)}s`,
+    size: Math.random() * 2 + 1,
+  }));
+
   return (
     <section
       ref={sectionRef}
-      onMouseMove={handleMouseMove}
       style={{
         minHeight: '100vh',
         display: 'flex',
@@ -123,20 +56,8 @@ export default function HeroSection() {
         background: 'linear-gradient(180deg, #030306 0%, #0a0a1e 40%, #0d0d22 60%, #050508 100%)',
       }}
     >
-      {/* Mouse-reactive gradient overlay */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: `radial-gradient(600px circle at calc(${smoothX.get() || 0.5} * 100%) calc(${smoothY.get() || 0.5} * 100%), rgba(123,47,190,0.08) 0%, transparent 50%)`,
-          pointerEvents: 'none',
-          x: useTransform(smoothX, [0, 1], [-20, 20]),
-          y: useTransform(smoothY, [0, 1], [-20, 20]),
-        }}
-      />
-
-      {/* Animated grid background with parallax */}
-      <motion.div
+      {/* Static grid background */}
+      <div
         style={{
           position: 'absolute',
           inset: 0,
@@ -145,7 +66,6 @@ export default function HeroSection() {
             linear-gradient(90deg, rgba(123, 47, 190, 0.06) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
-          y: gridY,
         }}
       />
 
@@ -167,46 +87,28 @@ export default function HeroSection() {
         WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 80%)',
       }} />
 
-      {/* Floating orbs */}
-      <FloatingOrb color="var(--purple)" size="300px" x="10%" y="20%" duration={8} />
-      <FloatingOrb color="var(--pink)" size="200px" x="75%" y="30%" duration={10} />
-      <FloatingOrb color="var(--teal)" size="250px" x="50%" y="60%" duration={12} />
+      {/* CSS-only floating orbs (no blur filter, no JS animation) */}
+      <div className="hero-orb hero-orb-1" />
+      <div className="hero-orb hero-orb-2" />
+      <div className="hero-orb hero-orb-3" />
 
-      {/* Horizon glow line */}
-      <motion.div
-        animate={{
-          boxShadow: [
-            '0 0 40px 10px rgba(123, 47, 190, 0.2)',
-            '0 0 60px 15px rgba(255, 45, 120, 0.3)',
-            '0 0 40px 10px rgba(0, 245, 212, 0.2)',
-            '0 0 40px 10px rgba(123, 47, 190, 0.2)',
-          ],
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          bottom: '25%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '85%',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, var(--purple), var(--pink), var(--teal), var(--purple), transparent)',
-        }}
-      />
+      {/* Horizon glow line — CSS animation */}
+      <div className="hero-horizon-glow" />
 
-      {/* Particles */}
+      {/* CSS-only particles */}
       {particles.map((p) => (
-        <Particle
+        <div
           key={p.id}
+          className="hero-particle"
           style={{
             left: p.left,
             top: p.top,
-            background: p.background,
             width: `${p.size}px`,
             height: `${p.size}px`,
+            background: p.color,
+            animationDelay: p.delay,
+            animationDuration: p.dur,
           }}
-          delay={p.delay}
-          dur={p.dur}
         />
       ))}
 
@@ -226,9 +128,8 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.div
-            animate={{ opacity: [1, 0.7, 1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+          <div
+            className="hero-subtitle-pulse"
             style={{
               fontFamily: "'Press Start 2P', monospace",
               fontSize: 'clamp(0.5rem, 1.5vw, 0.9rem)',
@@ -239,7 +140,7 @@ export default function HeroSection() {
             }}
           >
             ★ NEW ENGLAND ★
-          </motion.div>
+          </div>
         </motion.div>
 
         <motion.div
@@ -292,13 +193,7 @@ export default function HeroSection() {
           }}
         >
           {typedText}
-          <motion.span
-            animate={{ opacity: [1, 0] }}
-            transition={{ duration: 0.6, repeat: Infinity }}
-            style={{ color: 'var(--teal)', marginLeft: '2px' }}
-          >
-            ▌
-          </motion.span>
+          <span className="hero-cursor-blink" style={{ color: 'var(--teal)', marginLeft: '2px' }}>▌</span>
         </motion.p>
       </motion.div>
 
@@ -312,45 +207,22 @@ export default function HeroSection() {
         <CarCarousel />
       </motion.div>
 
-      {/* Animated scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        style={{
-          position: 'absolute',
-          bottom: '30px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          textAlign: 'center',
-          zIndex: 1,
-        }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '8px',
-          }}
-        >
-          <div style={{
-            fontFamily: "'Press Start 2P', monospace",
-            fontSize: '0.65rem',
-            color: 'rgba(240,240,255,0.3)',
-            letterSpacing: '3px',
-          }}>
-            SCROLL
-          </div>
-          <div style={{
-            width: '1px',
-            height: '30px',
-            background: 'linear-gradient(to bottom, rgba(0,245,212,0.5), transparent)',
-          }} />
-        </motion.div>
-      </motion.div>
+      {/* CSS-animated scroll indicator */}
+      <div className="hero-scroll-indicator">
+        <div style={{
+          fontFamily: "'Press Start 2P', monospace",
+          fontSize: '0.65rem',
+          color: 'rgba(240,240,255,0.3)',
+          letterSpacing: '3px',
+        }}>
+          SCROLL
+        </div>
+        <div style={{
+          width: '1px',
+          height: '30px',
+          background: 'linear-gradient(to bottom, rgba(0,245,212,0.5), transparent)',
+        }} />
+      </div>
     </section>
   );
 }

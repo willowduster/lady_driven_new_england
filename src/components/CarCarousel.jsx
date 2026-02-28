@@ -189,16 +189,12 @@ export default function CarCarousel() {
               marginBottom: '20px',
               flexWrap: 'wrap',
             }}>
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                  filter: [`drop-shadow(0 0 15px ${item.color})`, `drop-shadow(0 0 30px ${item.color})`, `drop-shadow(0 0 15px ${item.color})`],
-                }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', lineHeight: 1, flexShrink: 0 }}
+              <div
+                className="carousel-emoji-float"
+                style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', lineHeight: 1, flexShrink: 0, filter: `drop-shadow(0 0 15px ${item.color})` }}
               >
                 {item.emoji}
-              </motion.div>
+              </div>
 
               <div style={{ flex: 1, minWidth: '150px' }}>
                 <div style={{

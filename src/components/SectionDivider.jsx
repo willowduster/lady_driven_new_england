@@ -1,15 +1,19 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 
 export default function SectionDivider({ color = 'teal' }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
+  const [visible, setVisible] = useState(false);
 
-  const scaleX = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   const colors = {
     teal: { line: 'var(--teal)', glow: 'rgba(0,245,212,0.3)' },
@@ -21,17 +25,18 @@ export default function SectionDivider({ color = 'teal' }) {
 
   return (
     <div ref={ref} style={{ padding: '10px 0', position: 'relative' }}>
-      <motion.div
+      <div
         style={{
           height: '1px',
           background: `linear-gradient(90deg, transparent 0%, ${c.line} 30%, ${c.line} 70%, transparent 100%)`,
-          scaleX,
-          opacity,
+          transform: `scaleX(${visible ? 1 : 0})`,
+          opacity: visible ? 1 : 0,
           boxShadow: `0 0 15px ${c.glow}`,
           transformOrigin: 'center',
+          transition: 'transform 0.8s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease',
         }}
       />
-      <motion.div
+      <div
         style={{
           position: 'absolute',
           top: '50%',
@@ -40,9 +45,10 @@ export default function SectionDivider({ color = 'teal' }) {
           width: '6px',
           height: '6px',
           background: c.line,
-          opacity,
+          opacity: visible ? 1 : 0,
           boxShadow: `0 0 10px ${c.line}`,
           clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+          transition: 'opacity 0.8s ease',
         }}
       />
     </div>

@@ -79,13 +79,12 @@ export default function JoinTeam() {
             }}
           >
             <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(0,245,212,0.05) 0%, transparent 60%)', pointerEvents: 'none' }} />
-            <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+            <div
+              className="carousel-emoji-float"
               style={{ fontSize: '4rem', marginBottom: '20px' }}
             >
               🏁
-            </motion.div>
+            </div>
             <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '1.3rem', color: 'var(--teal)', textShadow: '0 0 15px var(--teal)', marginBottom: '15px', letterSpacing: '3px' }}>APPLICATION RECEIVED!</div>
             <div style={{ fontSize: '0.8rem', color: 'rgba(240,240,255,0.7)', lineHeight: 1.9, maxWidth: '400px', margin: '0 auto' }}>
               Welcome to the Lady Driven family! We&apos;ll be in touch soon. In the meantime, follow us on <a href="https://www.instagram.com/ladydrivennewengland/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--pink)', textDecoration: 'none' }}>Instagram</a>!
