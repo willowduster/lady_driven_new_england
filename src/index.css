@@ -84,17 +84,17 @@ body::after {
 
 .neon-text-pink {
   color: var(--pink);
-  text-shadow: 0 0 7px var(--pink), 0 0 15px var(--pink), 0 0 30px var(--pink);
+  text-shadow: 0 0 4px var(--pink), 0 0 10px rgba(255,45,120,0.5);
 }
 
 .neon-text-teal {
   color: var(--teal);
-  text-shadow: 0 0 7px var(--teal), 0 0 15px var(--teal), 0 0 30px var(--teal);
+  text-shadow: 0 0 4px var(--teal), 0 0 10px rgba(0,245,212,0.5);
 }
 
 .neon-text-purple {
   color: var(--purple-bright);
-  text-shadow: 0 0 7px var(--purple-bright), 0 0 15px var(--purple-bright);
+  text-shadow: 0 0 4px var(--purple-bright), 0 0 10px rgba(168,85,247,0.5);
 }
 
 .pixel-border {
@@ -224,7 +224,7 @@ body::after {
   font-size: 0.75rem;
   background: var(--deep-black);
   padding: 0 15px;
-  text-shadow: 0 0 10px var(--teal);
+  text-shadow: 0 0 6px rgba(0,245,212,0.5);
 }
 
 .btn-neon {
@@ -342,7 +342,7 @@ a, button {
 
 /* Hover glow pulse on logo */
 .ldne-logo:hover {
-  filter: drop-shadow(0 0 12px rgba(123,47,190,0.5)) drop-shadow(0 0 24px rgba(255,45,120,0.2));
+  filter: drop-shadow(0 0 8px rgba(123,47,190,0.35)) drop-shadow(0 0 16px rgba(255,45,120,0.15));
   transition: filter 0.4s ease;
 }
 

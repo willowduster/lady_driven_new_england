@@ -193,13 +193,13 @@ export default function HeroSection() {
             }}
           >
             {item.type === 'heart' && (
-              <HeroHeart size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 4px ${item.color})`, opacity: 0.6 }} />
+              <HeroHeart size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 2px ${item.color})`, opacity: 0.6 }} />
             )}
             {item.type === 'star' && (
-              <HeroStar size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 4px ${item.color})`, opacity: 0.5 }} />
+              <HeroStar size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 2px ${item.color})`, opacity: 0.5 }} />
             )}
             {item.type === 'sparkle' && (
-              <HeroSparkle size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 4px ${item.color})`, opacity: 0.6 }} />
+              <HeroSparkle size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 2px ${item.color})`, opacity: 0.6 }} />
             )}
           </div>
         )
@@ -251,10 +251,10 @@ export default function HeroSection() {
               }}
             >
               {item.id % 3 === 0
-                ? <HeroHeart size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 6px ${item.color})` }} />
+                ? <HeroHeart size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 3px ${item.color})` }} />
                 : item.id % 3 === 1
-                ? <HeroStar size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 6px ${item.color})` }} />
-                : <HeroSparkle size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 6px ${item.color})` }} />
+                ? <HeroStar size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 3px ${item.color})` }} />
+                : <HeroSparkle size={item.size} color={item.color} style={{ filter: `drop-shadow(0 0 3px ${item.color})` }} />
               }
             </motion.div>
           ))}
@@ -276,29 +276,6 @@ export default function HeroSection() {
           }}
         >
           <div className="hero-divider-sparkle" />
-        </motion.div>
-
-        {/* Decorative hearts row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '8px',
-            marginBottom: '12px',
-          }}
-        >
-          {[6, 8, 10, 8, 6].map((sz, i) => (
-            <span key={i} className="hero-heart-float" style={{ animationDelay: `${i * 0.2}s` }}>
-              <HeroHeart
-                size={sz}
-                color={['#ff2d78', '#a855f7', '#ff6eb4', '#a855f7', '#ff2d78'][i]}
-                style={{ filter: `drop-shadow(0 0 4px ${['#ff2d78', '#a855f7', '#ff6eb4', '#a855f7', '#ff2d78'][i]})` }}
-              />
-            </span>
-          ))}
         </motion.div>
 
         <motion.p
