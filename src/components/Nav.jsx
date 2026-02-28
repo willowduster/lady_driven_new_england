@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -85,17 +86,7 @@ export default function Nav() {
         style={{ cursor: 'pointer' }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
-        <div style={{
-          fontFamily: "'Press Start 2P', monospace",
-          fontSize: 'clamp(0.55rem, 1.5vw, 0.8rem)',
-          color: 'var(--pink)',
-          textShadow: '0 0 10px var(--pink), 0 0 20px var(--pink)',
-          lineHeight: 1.6,
-          letterSpacing: '2px',
-        }}>
-          <div>LADY DRIVEN</div>
-          <div style={{ color: 'var(--teal)', textShadow: '0 0 10px var(--teal)' }}>NEW ENGLAND</div>
-        </div>
+        <Logo size="sm" />
       </motion.div>
 
       {/* Desktop Nav */}

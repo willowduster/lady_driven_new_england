@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import CarCarousel from './CarCarousel';
+import Logo from './Logo';
 
 export default function HeroSection() {
   const sectionRef = useRef(null);
@@ -12,7 +13,26 @@ export default function HeroSection() {
 
   const titleY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const carouselY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+
+  // Mouse-reactive gradient — rAF-throttled CSS variable update
+  const [mouseGrad, setMouseGrad] = useState({ x: 50, y: 50 });
+  const rafRef = useRef(null);
+  const handleMouseMove = useCallback((e) => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = sectionRef.current?.getBoundingClientRect();
+      if (rect) {
+        setMouseGrad({
+          x: ((e.clientX - rect.left) / rect.width * 100),
+          y: ((e.clientY - rect.top) / rect.height * 100),
+        });
+      }
+      rafRef.current = null;
+    });
+  }, []);
+  useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
 
   // Typed text effect for tagline
   const [typedText, setTypedText] = useState('');
@@ -30,8 +50,8 @@ export default function HeroSection() {
     return () => clearInterval(timer);
   }, []);
 
-  // 15 CSS-animated particles (down from 50 JS-animated)
-  const particles = Array.from({ length: 15 }, (_, i) => ({
+  // 30 CSS-animated particles (balanced from original 50)
+  const particles = Array.from({ length: 30 }, (_, i) => ({
     id: i,
     left: `${Math.random() * 100}%`,
     top: `${40 + Math.random() * 60}%`,
@@ -44,6 +64,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
+      onMouseMove={handleMouseMove}
       style={{
         minHeight: '100vh',
         display: 'flex',
@@ -56,8 +77,19 @@ export default function HeroSection() {
         background: 'linear-gradient(180deg, #030306 0%, #0a0a1e 40%, #0d0d22 60%, #050508 100%)',
       }}
     >
-      {/* Static grid background */}
+      {/* Mouse-reactive gradient overlay */}
       <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: `radial-gradient(600px circle at ${mouseGrad.x}% ${mouseGrad.y}%, rgba(123,47,190,0.08) 0%, transparent 50%)`,
+          pointerEvents: 'none',
+          transition: 'background 0.3s ease-out',
+        }}
+      />
+
+      {/* Grid background with parallax */}
+      <motion.div
         style={{
           position: 'absolute',
           inset: 0,
@@ -66,6 +98,7 @@ export default function HeroSection() {
             linear-gradient(90deg, rgba(123, 47, 190, 0.06) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
+          y: gridY,
         }}
       />
 
@@ -148,22 +181,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1
-            className="glitch"
-            data-text="LADY DRIVEN"
-            style={{
-              fontFamily: 'Orbitron, monospace',
-              fontSize: 'clamp(2.5rem, 8vw, 6rem)',
-              fontWeight: 900,
-              color: 'var(--pink)',
-              textShadow: '0 0 20px var(--pink), 0 0 40px var(--pink), 0 0 80px rgba(255,45,120,0.3)',
-              letterSpacing: '8px',
-              lineHeight: 1,
-              position: 'relative',
-            }}
-          >
-            LADY DRIVEN
-          </h1>
+          <Logo size="hero" animate />
         </motion.div>
 
         <motion.div

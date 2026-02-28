@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 export default function LoadingScreen({ onComplete }) {
   const [progress, setProgress] = useState(0);
@@ -95,16 +96,7 @@ export default function LoadingScreen({ onComplete }) {
                 }}>
                   INITIALIZING
                 </div>
-                <div style={{
-                  fontFamily: 'Orbitron, monospace',
-                  fontSize: 'clamp(1.8rem, 5vw, 3rem)',
-                  fontWeight: 900,
-                  color: 'var(--pink)',
-                  textShadow: '0 0 20px var(--pink), 0 0 40px var(--pink)',
-                  letterSpacing: '6px',
-                }}>
-                  LADY DRIVEN
-                </div>
+                <Logo size="lg" animate />
               </motion.div>
 
               {/* Progress bar */}

@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Logo from './Logo';
 
 export default function Footer() {
   const ref = useRef(null);
@@ -45,16 +46,7 @@ export default function Footer() {
           transition={{ duration: 0.8 }}
           style={{ textAlign: 'center', marginBottom: '30px' }}
         >
-          <div style={{
-            fontFamily: "'Press Start 2P', monospace",
-            fontSize: 'clamp(0.85rem, 2.5vw, 1.2rem)',
-            color: 'var(--pink)',
-            textShadow: '0 0 20px rgba(255,45,120,0.4)',
-            letterSpacing: '4px',
-            marginBottom: '10px',
-          }}>
-            LADY DRIVEN NEW ENGLAND
-          </div>
+          <Logo size="lg" />
           <div style={{
             fontFamily: 'Orbitron, monospace',
             fontSize: '0.7rem',
