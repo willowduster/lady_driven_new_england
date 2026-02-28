@@ -152,6 +152,11 @@ export default function HeroSection() {
           marginBottom: '40px',
           position: 'relative',
           zIndex: 1,
+          width: '100%',
+          maxWidth: '900px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           y: titleY,
           opacity: titleOpacity,
         }}
@@ -180,6 +185,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
         >
           <Logo size="hero" animate />
         </motion.div>
@@ -190,6 +196,7 @@ export default function HeroSection() {
           transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
           style={{
             height: '2px',
+            width: '100%',
             background: 'linear-gradient(90deg, transparent, var(--teal), var(--pink), var(--teal), transparent)',
             margin: '18px auto',
             transformOrigin: 'center',
@@ -208,6 +215,7 @@ export default function HeroSection() {
             letterSpacing: '4px',
             textTransform: 'uppercase',
             minHeight: '1.5em',
+            width: '100%',
           }}
         >
           {typedText}
