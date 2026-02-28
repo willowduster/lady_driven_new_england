@@ -20,7 +20,8 @@ export default function JoinTeam() {
     color: 'var(--white)',
     padding: '14px 18px',
     fontFamily: 'Orbitron, monospace',
-    fontSize: '0.75rem',
+    fontSize: '0.85rem',
+    fontWeight: 500,
     letterSpacing: '1px',
     outline: 'none',
     transition: 'all 0.4s cubic-bezier(0.16,1,0.3,1)',
@@ -30,10 +31,11 @@ export default function JoinTeam() {
 
   const labelStyle = {
     display: 'block',
-    fontSize: '0.55rem',
-    color: 'rgba(0,245,212,0.6)',
+    fontSize: '0.7rem',
+    fontWeight: 600,
+    color: 'rgba(0,245,212,0.7)',
     letterSpacing: '3px',
-    marginBottom: '6px',
+    marginBottom: '8px',
     fontFamily: 'Orbitron, monospace',
     textTransform: 'uppercase',
   };
@@ -56,7 +58,7 @@ export default function JoinTeam() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2 }}
-          style={{ textAlign: 'center', fontSize: '0.75rem', color: 'rgba(240,240,255,0.5)', letterSpacing: '2px', marginBottom: '40px', marginTop: '-30px', fontFamily: 'Orbitron', lineHeight: 2 }}
+          style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 500, color: 'rgba(240,240,255,0.55)', letterSpacing: '2px', marginBottom: '40px', marginTop: '-30px', fontFamily: 'Orbitron', lineHeight: 2 }}
         >
           Want to join our female-only team? We&apos;re recruiting!
         </motion.p>
@@ -131,7 +133,7 @@ export default function JoinTeam() {
             {/* Top glow */}
             <div style={{ position: 'absolute', top: 0, left: '25px', right: '25px', height: '1px', background: 'linear-gradient(90deg, var(--teal), transparent 30%, transparent 70%, var(--pink))', opacity: 0.3 }} />
 
-            <p style={{ fontSize: '0.78rem', color: 'rgba(240,240,255,0.65)', lineHeight: 2, marginBottom: '30px', fontFamily: 'Orbitron, monospace', letterSpacing: '1px' }}>
+            <p style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(240,240,255,0.7)', lineHeight: 2, marginBottom: '30px', fontFamily: 'Orbitron, monospace', letterSpacing: '1px' }}>
               Ready to roll with us? Fill out the form below or shoot us a DM on Instagram. We welcome enthusiasts of all vehicles and experience levels!
             </p>
 
@@ -226,7 +228,7 @@ export default function JoinTeam() {
                   border: '2px solid var(--teal)',
                   color: 'var(--teal)',
                   fontFamily: 'Orbitron, monospace',
-                  fontSize: '0.85rem',
+                  fontSize: '0.95rem',
                   fontWeight: 700,
                   letterSpacing: '4px',
                   cursor: 'pointer',
@@ -240,7 +242,7 @@ export default function JoinTeam() {
                 <span style={{ position: 'relative', zIndex: 1 }}>▶ SUBMIT APPLICATION</span>
               </motion.button>
 
-              <div style={{ textAlign: 'center', marginTop: '15px', fontSize: '0.6rem', color: 'rgba(240,240,255,0.35)', letterSpacing: '1px', fontFamily: 'Orbitron' }}>
+              <div style={{ textAlign: 'center', marginTop: '15px', fontSize: '0.75rem', fontWeight: 500, color: 'rgba(240,240,255,0.4)', letterSpacing: '1px', fontFamily: 'Orbitron' }}>
                 Or email us at <a href="mailto:ladydrivennewengland@gmail.com" style={{ color: 'var(--teal)', textDecoration: 'none' }}>ladydrivennewengland@gmail.com</a>
               </div>
             </form>

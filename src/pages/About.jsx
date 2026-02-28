@@ -72,14 +72,14 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div style={{ fontSize: '0.85rem', lineHeight: 2.2, color: 'rgba(240,240,255,0.8)', fontFamily: 'Orbitron, monospace', letterSpacing: '1px' }}>
+            <div style={{ fontSize: '0.95rem', lineHeight: 2.2, color: 'rgba(240,240,255,0.85)', fontFamily: 'Orbitron, monospace', letterSpacing: '1px' }}>
               <p style={{ marginBottom: '20px' }}>
                 Lady Driven New England is the New England automotive community <strong style={{ color: 'var(--teal)' }}>for women, by women</strong>. Est. 2020, LDNE was created to provide a platform for New England-based lady motor enthusiasts of all kinds.
               </p>
               <p style={{ marginBottom: '20px' }}>
                 We host car shows, burnout competitions, charity toy runs, cruises, and so much more — all in a <strong style={{ color: 'var(--pink)' }}>supportive, no-pressure environment</strong> where women can learn, connect, and thrive.
               </p>
-              <p style={{ color: 'var(--pink)', textShadow: '0 0 5px var(--pink)', fontSize: '0.9rem' }}>
+              <p style={{ color: 'var(--pink)', textShadow: '0 0 5px var(--pink)', fontSize: '1rem', fontWeight: 700 }}>
                 Whether you&apos;re brand new or a seasoned pro — there&apos;s a seat for you here.
               </p>
             </div>
@@ -102,8 +102,9 @@ export default function About() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '0.5rem',
-                    color: 'rgba(240,240,255,0.3)',
+                    fontSize: '0.7rem',
+                    fontWeight: 500,
+                    color: 'rgba(240,240,255,0.35)',
                     letterSpacing: '1px',
                     fontFamily: 'Orbitron',
                     transition: 'all 0.3s',
@@ -175,7 +176,7 @@ export default function About() {
                   <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '1.5rem', fontWeight: 900, color: 'var(--teal)', textShadow: '0 0 10px var(--teal)' }}>
                     <AnimatedCounter value={s.value} suffix={s.suffix} inView={inView} />
                   </div>
-                  <div style={{ fontSize: '0.55rem', letterSpacing: '2px', color: 'rgba(240,240,255,0.5)', marginTop: '6px' }}>{s.label}</div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '2px', color: 'rgba(240,240,255,0.55)', marginTop: '6px' }}>{s.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -186,7 +187,7 @@ export default function About() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.6 }}
             >
-              <div style={{ fontSize: '0.6rem', letterSpacing: '3px', color: 'rgba(0,245,212,0.6)', marginBottom: '12px', fontFamily: 'Orbitron' }}>WHAT WE DO</div>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '3px', color: 'rgba(0,245,212,0.7)', marginBottom: '12px', fontFamily: 'Orbitron' }}>WHAT WE DO</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {highlights.map((h, i) => (
                   <motion.span
@@ -196,8 +197,9 @@ export default function About() {
                     transition={{ delay: 0.7 + i * 0.05 }}
                     whileHover={{ scale: 1.08, borderColor: 'var(--teal)', background: 'rgba(0,245,212,0.08)' }}
                     style={{
-                      fontSize: '0.6rem',
-                      padding: '6px 12px',
+                      fontSize: '0.75rem',
+                      fontWeight: 500,
+                      padding: '8px 14px',
                       border: '1px solid rgba(123,47,190,0.3)',
                       color: 'rgba(240,240,255,0.7)',
                       letterSpacing: '1px',

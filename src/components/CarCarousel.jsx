@@ -120,7 +120,7 @@ export default function CarCarousel() {
         textAlign: 'center',
         marginBottom: '25px',
         fontFamily: "'Press Start 2P', monospace",
-        fontSize: 'clamp(0.5rem, 1.8vw, 0.85rem)',
+        fontSize: 'clamp(0.65rem, 2vw, 1rem)',
         color: 'var(--teal)',
         textShadow: '0 0 15px var(--teal)',
         letterSpacing: '3px',
@@ -169,7 +169,8 @@ export default function CarCarousel() {
             <div style={{
               display: 'inline-block',
               padding: '4px 12px',
-              fontSize: '0.45rem',
+              fontSize: '0.65rem',
+              fontWeight: 600,
               letterSpacing: '3px',
               color: item.accent,
               border: `1px solid ${item.color}40`,
@@ -202,7 +203,7 @@ export default function CarCarousel() {
               <div style={{ flex: 1, minWidth: '150px' }}>
                 <div style={{
                   fontFamily: "'Press Start 2P', monospace",
-                  fontSize: 'clamp(0.6rem, 2vw, 1rem)',
+                  fontSize: 'clamp(0.8rem, 2.5vw, 1.2rem)',
                   color: item.accent,
                   textShadow: `0 0 12px ${item.color}`,
                   letterSpacing: '2px',
@@ -213,7 +214,7 @@ export default function CarCarousel() {
                 </div>
                 <div style={{
                   fontFamily: 'Orbitron, monospace',
-                  fontSize: 'clamp(0.5rem, 1.2vw, 0.65rem)',
+                  fontSize: 'clamp(0.65rem, 1.4vw, 0.8rem)',
                   color: 'rgba(240,240,255,0.4)',
                   letterSpacing: '3px',
                   textTransform: 'uppercase',
@@ -226,7 +227,7 @@ export default function CarCarousel() {
             {/* Description */}
             <p style={{
               fontFamily: 'Orbitron, monospace',
-              fontSize: 'clamp(0.65rem, 1.5vw, 0.8rem)',
+              fontSize: 'clamp(0.8rem, 1.8vw, 0.95rem)',
               color: 'rgba(240,240,255,0.6)',
               lineHeight: 2,
               letterSpacing: '1px',
@@ -245,8 +246,8 @@ export default function CarCarousel() {
               alignItems: 'center',
               justifyContent: 'center',
               fontFamily: 'Orbitron',
-              fontSize: '0.55rem',
-              color: 'rgba(240,240,255,0.2)',
+              fontSize: '0.7rem',
+              color: 'rgba(240,240,255,0.25)',
               letterSpacing: '3px',
             }}>
               {/* Replace with: <img src={`/images/event-${item.id}.jpg`} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> */}
@@ -268,7 +269,7 @@ export default function CarCarousel() {
               padding: '10px 18px',
               cursor: 'pointer',
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               transition: 'all 0.3s',
             }}
           >
@@ -308,7 +309,7 @@ export default function CarCarousel() {
               padding: '10px 18px',
               cursor: 'pointer',
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               transition: 'all 0.3s',
             }}
           >
@@ -322,7 +323,7 @@ export default function CarCarousel() {
         textAlign: 'center',
         marginTop: '12px',
         fontFamily: "'Press Start 2P', monospace",
-        fontSize: '0.5rem',
+        fontSize: '0.65rem',
         color: 'rgba(240,240,255,0.3)',
         letterSpacing: '3px',
       }}>

@@ -47,7 +47,7 @@ export default function MeetTheGirls() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2 }}
-          style={{ textAlign: 'center', fontSize: '0.8rem', color: 'rgba(240,240,255,0.6)', letterSpacing: '2px', marginBottom: '50px', marginTop: '-30px', fontFamily: 'Orbitron', maxWidth: '700px', margin: '-30px auto 50px', lineHeight: 2 }}
+          style={{ textAlign: 'center', fontSize: '0.95rem', fontWeight: 500, color: 'rgba(240,240,255,0.65)', letterSpacing: '2px', marginBottom: '50px', marginTop: '-30px', fontFamily: 'Orbitron', maxWidth: '700px', margin: '-30px auto 50px', lineHeight: 2 }}
         >
           The New England automotive community for women, by women. We&apos;re here to connect, empower, and support female motor enthusiasts.
         </motion.p>
@@ -100,12 +100,12 @@ export default function MeetTheGirls() {
                 >
                   {item.emoji}
                 </motion.div>
-                <div style={{ fontSize: '0.4rem', padding: '3px 8px', border: `1px solid ${item.color}50`, color: item.color, letterSpacing: '2px', fontFamily: 'Orbitron' }}>
+                <div style={{ fontSize: '0.6rem', fontWeight: 600, padding: '4px 10px', border: `1px solid ${item.color}50`, color: item.color, letterSpacing: '2px', fontFamily: 'Orbitron' }}>
                   {item.tag}
                 </div>
                 <div style={{
                   fontFamily: 'Orbitron',
-                  fontSize: '0.7rem',
+                  fontSize: '0.85rem',
                   fontWeight: 700,
                   color: 'var(--white)',
                   letterSpacing: '1px',
@@ -114,7 +114,7 @@ export default function MeetTheGirls() {
                   {item.caption}
                 </div>
                 {/* Replace with real photo: <img src={`/images/gallery-${item.id}.jpg`} /> */}
-                <div style={{ fontSize: '0.4rem', color: 'rgba(240,240,255,0.2)', letterSpacing: '1px' }}>
+                <div style={{ fontSize: '0.6rem', color: 'rgba(240,240,255,0.25)', letterSpacing: '1px' }}>
                   📷 ADD PHOTO
                 </div>
               </div>
@@ -147,8 +147,8 @@ export default function MeetTheGirls() {
             >
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: `linear-gradient(90deg, ${v.color}, transparent)`, opacity: 0.5 }} />
               <div style={{ fontSize: '2rem', marginBottom: '12px' }}>{v.icon}</div>
-              <div style={{ fontFamily: 'Orbitron', fontSize: '0.9rem', fontWeight: 900, color: v.color, textShadow: `0 0 8px ${v.color}`, marginBottom: '8px', letterSpacing: '2px' }}>{v.title}</div>
-              <div style={{ fontSize: '0.72rem', color: 'rgba(240,240,255,0.6)', lineHeight: 1.8 }}>{v.desc}</div>
+              <div style={{ fontFamily: 'Orbitron', fontSize: '1rem', fontWeight: 900, color: v.color, textShadow: `0 0 8px ${v.color}`, marginBottom: '8px', letterSpacing: '2px' }}>{v.title}</div>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(240,240,255,0.65)', lineHeight: 1.9 }}>{v.desc}</div>
             </motion.div>
           ))}
         </div>

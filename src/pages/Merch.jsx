@@ -86,8 +86,8 @@ export default function Merch() {
                     style={{
                       position: 'absolute', top: '12px', right: '12px',
                       background: p.color, color: '#000',
-                      fontSize: '0.5rem', padding: '4px 10px', letterSpacing: '1.5px',
-                      fontFamily: 'Orbitron', fontWeight: 700,
+                      fontSize: '0.65rem', fontWeight: 700, padding: '5px 12px', letterSpacing: '1.5px',
+                      fontFamily: 'Orbitron',
                     }}
                   >
                     {p.tag}
@@ -97,8 +97,8 @@ export default function Merch() {
               </div>
 
               <div style={{ padding: '20px' }}>
-                <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.85rem', fontWeight: 700, color: 'var(--white)', marginBottom: '8px', letterSpacing: '1px' }}>{p.name}</div>
-                <div style={{ fontSize: '0.7rem', color: 'rgba(240,240,255,0.55)', lineHeight: 1.8, marginBottom: '18px', minHeight: '40px' }}>{p.desc}</div>
+                <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '1rem', fontWeight: 700, color: 'var(--white)', marginBottom: '8px', letterSpacing: '1px' }}>{p.name}</div>
+                <div style={{ fontSize: '0.85rem', color: 'rgba(240,240,255,0.6)', lineHeight: 1.8, marginBottom: '18px', minHeight: '40px' }}>{p.desc}</div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ fontFamily: 'Orbitron', fontSize: '1.2rem', fontWeight: 900, color: p.color, textShadow: `0 0 8px ${p.color}` }}>{p.price}</div>
                   <motion.button
@@ -111,7 +111,8 @@ export default function Merch() {
                       padding: '8px 18px',
                       cursor: 'pointer',
                       fontFamily: 'Orbitron, monospace',
-                      fontSize: '0.55rem',
+                      fontSize: '0.7rem',
+                      fontWeight: 600,
                       letterSpacing: '1.5px',
                       transition: 'all 0.3s',
                     }}

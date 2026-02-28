@@ -72,17 +72,17 @@ export default function Events() {
               {/* Date */}
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '1rem', color: e.color, textShadow: `0 0 10px ${e.color}`, lineHeight: 1.2 }}>{e.date}</div>
-                <div style={{ fontSize: '0.55rem', color: 'rgba(240,240,255,0.35)', letterSpacing: '1px', marginTop: '4px' }}>{e.year}</div>
+                <div style={{ fontSize: '0.7rem', fontWeight: 500, color: 'rgba(240,240,255,0.4)', letterSpacing: '1px', marginTop: '4px' }}>{e.year}</div>
               </div>
 
               {/* Event info */}
               <div>
                 <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '0.5rem', padding: '3px 8px', background: `${e.color}15`, border: `1px solid ${e.color}50`, color: e.color, letterSpacing: '2px', fontFamily: 'Orbitron' }}>{e.type}</span>
-                  <span style={{ fontSize: '0.6rem', color: 'rgba(240,240,255,0.35)', letterSpacing: '1px' }}>📍 {e.location}</span>
+                  <span style={{ fontSize: '0.65rem', fontWeight: 600, padding: '4px 10px', background: `${e.color}15`, border: `1px solid ${e.color}50`, color: e.color, letterSpacing: '2px', fontFamily: 'Orbitron' }}>{e.type}</span>
+                  <span style={{ fontSize: '0.75rem', color: 'rgba(240,240,255,0.45)', letterSpacing: '1px' }}>📍 {e.location}</span>
                 </div>
-                <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 'clamp(0.85rem, 2vw, 1.05rem)', fontWeight: 700, color: 'var(--white)', marginBottom: '8px', letterSpacing: '1px' }}>{e.name}</div>
-                <div style={{ fontSize: '0.72rem', color: 'rgba(240,240,255,0.55)', lineHeight: 1.7 }}>{e.description}</div>
+                <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', fontWeight: 800, color: 'var(--white)', marginBottom: '8px', letterSpacing: '1px' }}>{e.name}</div>
+                <div style={{ fontSize: '0.85rem', color: 'rgba(240,240,255,0.6)', lineHeight: 1.7 }}>{e.description}</div>
               </div>
 
               {/* Status */}
@@ -90,7 +90,7 @@ export default function Events() {
                 <motion.div
                   animate={{ opacity: [1, 0.4, 1] }}
                   transition={{ duration: 2.5, repeat: Infinity }}
-                  style={{ fontSize: '0.5rem', color: e.color, letterSpacing: '1px', marginBottom: '10px', fontFamily: 'Orbitron' }}
+                  style={{ fontSize: '0.7rem', fontWeight: 600, color: e.color, letterSpacing: '1px', marginBottom: '10px', fontFamily: 'Orbitron' }}
                 >
                   {e.spots}
                 </motion.div>
@@ -101,10 +101,11 @@ export default function Events() {
                     background: 'transparent',
                     border: `1px solid ${e.color}`,
                     color: e.color,
-                    padding: '8px 16px',
+                    padding: '10px 20px',
                     cursor: 'pointer',
                     fontFamily: 'Orbitron, monospace',
-                    fontSize: '0.55rem',
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
                     letterSpacing: '1px',
                     transition: 'all 0.3s',
                   }}

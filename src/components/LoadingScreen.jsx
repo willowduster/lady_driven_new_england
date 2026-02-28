@@ -130,7 +130,8 @@ export default function LoadingScreen({ onComplete }) {
                   justifyContent: 'space-between',
                   marginTop: '12px',
                   fontFamily: "'Press Start 2P', monospace",
-                  fontSize: '0.5rem',
+                  fontSize: '0.65rem',
+                  fontWeight: 600,
                   color: 'rgba(240,240,255,0.4)',
                   letterSpacing: '2px',
                 }}>

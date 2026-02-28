@@ -338,7 +338,7 @@ export default function HeroSection() {
         >
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: '0.45rem',
+            fontSize: '0.65rem',
             color: 'rgba(240,240,255,0.3)',
             letterSpacing: '3px',
           }}>

@@ -87,7 +87,7 @@ export default function Nav() {
       >
         <div style={{
           fontFamily: "'Press Start 2P', monospace",
-          fontSize: 'clamp(0.45rem, 1.3vw, 0.7rem)',
+          fontSize: 'clamp(0.55rem, 1.5vw, 0.8rem)',
           color: 'var(--pink)',
           textShadow: '0 0 10px var(--pink), 0 0 20px var(--pink)',
           lineHeight: 1.6,
@@ -115,7 +115,8 @@ export default function Nav() {
                 color: isActive ? 'var(--teal)' : 'rgba(240,240,255,0.6)',
                 textDecoration: 'none',
                 fontFamily: 'Orbitron, monospace',
-                fontSize: '0.6rem',
+                fontSize: '0.75rem',
+                fontWeight: 600,
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase',
                 padding: '8px 14px',
@@ -161,7 +162,7 @@ export default function Nav() {
           padding: '8px 12px',
           cursor: 'pointer',
           fontFamily: 'Orbitron',
-          fontSize: '0.7rem',
+          fontSize: '0.8rem',
           transition: 'all 0.3s',
         }}
         className="mobile-menu-btn"
@@ -205,7 +206,8 @@ export default function Nav() {
                     color: isActive ? 'var(--teal)' : 'rgba(240,240,255,0.7)',
                     textDecoration: 'none',
                     fontFamily: 'Orbitron',
-                    fontSize: '0.7rem',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
                     letterSpacing: '2px',
                     padding: '12px 15px',
                     borderLeft: isActive ? '2px solid var(--teal)' : '2px solid transparent',

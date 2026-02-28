@@ -47,7 +47,7 @@ export default function Footer() {
         >
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: 'clamp(0.7rem, 2vw, 1rem)',
+            fontSize: 'clamp(0.85rem, 2.5vw, 1.2rem)',
             color: 'var(--pink)',
             textShadow: '0 0 20px rgba(255,45,120,0.4)',
             letterSpacing: '4px',
@@ -57,7 +57,8 @@ export default function Footer() {
           </div>
           <div style={{
             fontFamily: 'Orbitron, monospace',
-            fontSize: '0.55rem',
+            fontSize: '0.7rem',
+            fontWeight: 500,
             color: 'rgba(240,240,255,0.35)',
             letterSpacing: '5px',
           }}>
@@ -73,7 +74,8 @@ export default function Footer() {
           style={{
             textAlign: 'center',
             fontFamily: 'Orbitron, monospace',
-            fontSize: '0.6rem',
+            fontSize: '0.75rem',
+            fontWeight: 500,
             color: 'rgba(240,240,255,0.4)',
             letterSpacing: '3px',
             marginBottom: '30px',
@@ -101,7 +103,8 @@ export default function Footer() {
               whileHover={{ y: -2, textShadow: `0 0 15px ${link.color}` }}
               style={{
                 fontFamily: 'Orbitron, monospace',
-                fontSize: '0.6rem',
+                fontSize: '0.75rem',
+                fontWeight: 600,
                 color: link.color,
                 textDecoration: 'none',
                 letterSpacing: '3px',
@@ -127,7 +130,8 @@ export default function Footer() {
             href="mailto:ladydrivennewengland@gmail.com"
             style={{
               fontFamily: 'Orbitron, monospace',
-              fontSize: '0.55rem',
+              fontSize: '0.7rem',
+              fontWeight: 500,
               color: 'rgba(0,245,212,0.5)',
               textDecoration: 'none',
               letterSpacing: '2px',
@@ -155,7 +159,7 @@ export default function Footer() {
           style={{
             textAlign: 'center',
             fontFamily: 'Orbitron, monospace',
-            fontSize: '0.45rem',
+            fontSize: '0.65rem',
             color: 'rgba(240,240,255,0.2)',
             letterSpacing: '3px',
           }}
