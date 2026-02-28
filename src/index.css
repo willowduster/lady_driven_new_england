@@ -462,6 +462,199 @@ a, button {
   50% { transform: translateY(-8px); }
 }
 
+/* ====== Loading Screen — Girly sparkle effects ====== */
+
+/* Soft glow blobs */
+.loading-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  will-change: transform;
+}
+.loading-glow-1 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(255,45,120,0.12) 0%, transparent 70%);
+  top: 25%; left: 30%;
+  animation: loading-glow-pulse-1 3s ease-in-out infinite;
+}
+.loading-glow-2 {
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%);
+  top: 35%; right: 25%;
+  animation: loading-glow-pulse-2 4s ease-in-out infinite;
+}
+.loading-glow-3 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(0,245,212,0.08) 0%, transparent 70%);
+  bottom: 30%; left: 50%;
+  animation: loading-glow-pulse-1 5s ease-in-out infinite reverse;
+}
+
+@keyframes loading-glow-pulse-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  50% { transform: translate(15px, -20px) scale(1.2); opacity: 1; }
+}
+@keyframes loading-glow-pulse-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  50% { transform: translate(-20px, 10px) scale(1.15); opacity: 1; }
+}
+
+/* Floating hearts/stars/sparkles — rise from bottom with drift */
+.loading-floater {
+  position: absolute;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.loading-float-left {
+  animation: loading-float-l 5s ease-out infinite;
+}
+.loading-float-right {
+  animation: loading-float-r 5s ease-out infinite;
+}
+
+@keyframes loading-float-l {
+  0%   { transform: translateY(0) translateX(0) rotate(0deg) scale(0); opacity: 0; }
+  15%  { opacity: 0.7; transform: translateY(-80px) translateX(-15px) rotate(-10deg) scale(1); }
+  70%  { opacity: 0.5; transform: translateY(-350px) translateX(-40px) rotate(-25deg) scale(0.8); }
+  100% { opacity: 0; transform: translateY(-500px) translateX(-60px) rotate(-35deg) scale(0.3); }
+}
+@keyframes loading-float-r {
+  0%   { transform: translateY(0) translateX(0) rotate(0deg) scale(0); opacity: 0; }
+  15%  { opacity: 0.7; transform: translateY(-80px) translateX(15px) rotate(10deg) scale(1); }
+  70%  { opacity: 0.5; transform: translateY(-350px) translateX(40px) rotate(25deg) scale(0.8); }
+  100% { opacity: 0; transform: translateY(-500px) translateX(60px) rotate(35deg) scale(0.3); }
+}
+
+/* Sparkle ring around loading logo */
+.sparkle-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  animation: sparkle-ring-spin 6s linear infinite;
+}
+.sparkle-ring-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: sparkle-ring-twinkle 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle-ring-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes sparkle-ring-twinkle {
+  0%   { opacity: 0.3; transform: rotate(var(--angle, 0deg)) translateX(130px) scale(0.6); }
+  100% { opacity: 1;   transform: rotate(var(--angle, 0deg)) translateX(130px) scale(1.2); }
+}
+
+/* Shimmer text effect for loading title */
+.loading-title-shimmer {
+  background: linear-gradient(
+    90deg,
+    #ff2d78 0%,
+    #ff6eb4 15%,
+    #a855f7 30%,
+    #00f5d4 50%,
+    #a855f7 70%,
+    #ff6eb4 85%,
+    #ff2d78 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 3s linear infinite;
+  text-shadow: none;
+}
+@keyframes shimmer-text {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Heart pulse for loading screen decorative hearts */
+.loading-heart-pulse {
+  display: inline-block;
+  animation: heart-pulse 1.2s ease-in-out infinite;
+}
+@keyframes heart-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+/* Loading twinkle effect for scattered sparkles */
+.loading-twinkle {
+  animation: twinkle-fade 2s ease-in-out infinite alternate;
+}
+@keyframes twinkle-fade {
+  0%   { opacity: 0.1; transform: scale(0.5) rotate(0deg); }
+  50%  { opacity: 0.9; transform: scale(1.3) rotate(90deg); }
+  100% { opacity: 0.2; transform: scale(0.7) rotate(180deg); }
+}
+
+/* Progress bar sparkle sweep */
+.progress-sparkle-sweep {
+  position: absolute;
+  top: -3px;
+  right: -2px;
+  width: 8px;
+  height: 10px;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,110,180,0.6) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: progress-glow 0.8s ease-in-out infinite alternate;
+}
+@keyframes progress-glow {
+  0% { opacity: 0.5; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.5); }
+}
+
+/* ====== Hero Section — Girly enhancements ====== */
+
+/* Floating shapes (hearts, stars, sparkles) in hero */
+.hero-shape-float {
+  position: absolute;
+  will-change: transform, opacity;
+  animation: hero-shape-rise 6s ease-in-out infinite;
+}
+
+@keyframes hero-shape-rise {
+  0%   { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+  15%  { opacity: 0.6; transform: translateY(-30px) rotate(5deg) scale(1); }
+  50%  { opacity: 0.4; transform: translateY(-120px) rotate(-5deg) scale(0.9); }
+  85%  { opacity: 0.2; transform: translateY(-200px) rotate(8deg) scale(0.6); }
+  100% { opacity: 0; transform: translateY(-250px) rotate(10deg) scale(0.3); }
+}
+
+/* Hearts floating gently in hero */
+.hero-heart-float {
+  display: inline-block;
+  animation: hero-heart-bob 2s ease-in-out infinite;
+}
+@keyframes hero-heart-bob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.15); }
+}
+
+/* Sparkle traveling along divider line */
+.hero-divider-sparkle {
+  position: absolute;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,45,120,0.5) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: divider-sparkle-travel 3s ease-in-out infinite;
+}
+@keyframes divider-sparkle-travel {
+  0%   { left: 5%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 95%; opacity: 0; }
+}
+
 /* Reduced motion — disable ALL animations for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
