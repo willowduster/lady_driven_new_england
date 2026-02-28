@@ -316,6 +316,11 @@ a, button {
 .ldne-logo {
   filter: drop-shadow(0 0 6px rgba(123,47,190,0.3));
 }
+.ldne-logo svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 .ldne-logo--animate .ldne-purple {
   opacity: 0;
