@@ -1,36 +1,77 @@
 import { useEffect, useRef, useState } from 'react';
 
-const TRAIL_LENGTH = 12;
-const TRAIL_INTERVAL = 40; // ms between trail samples
+const SPARKLE_LIMIT = 20;
+const SPARKLE_INTERVAL = 60; // ms between sparkle spawns
+const SPARKLE_LIFETIME = 800; // ms before sparkle fully fades
+
+// 4-point star SVG path (sparkle shape)
+const StarSVG = ({ size, color, opacity, rotation }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" style={{ display: 'block' }}>
+    <path
+      d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z"
+      fill={color}
+      opacity={opacity}
+      transform={`rotate(${rotation} 12 12)`}
+    />
+  </svg>
+);
 
 export default function CustomCursor() {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [hovering, setHovering] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [trail, setTrail] = useState([]);
-  const trailRef = useRef([]);
-  const lastTrailTime = useRef(0);
+  const [sparkles, setSparkles] = useState([]);
+  const sparklesRef = useRef([]);
+  const lastSparkleTime = useRef(0);
+  const hoveringRef = useRef(false);
 
   useEffect(() => {
-    // Skip on touch devices
+    hoveringRef.current = hovering;
+  }, [hovering]);
+
+  useEffect(() => {
     if ('ontouchstart' in window) return;
 
     let rafId = null;
     let latestX = -100;
     let latestY = -100;
+    let cleanupTimer = null;
 
     const update = () => {
       setPos({ x: latestX, y: latestY });
 
-      // Sample trail at intervals
       const now = performance.now();
-      if (now - lastTrailTime.current > TRAIL_INTERVAL) {
-        lastTrailTime.current = now;
-        trailRef.current = [
-          { x: latestX, y: latestY, id: now },
-          ...trailRef.current,
-        ].slice(0, TRAIL_LENGTH);
-        setTrail([...trailRef.current]);
+      if (now - lastSparkleTime.current > SPARKLE_INTERVAL) {
+        lastSparkleTime.current = now;
+
+        // Random offset from cursor for organic feel
+        const offsetX = (Math.random() - 0.5) * 30;
+        const offsetY = (Math.random() - 0.5) * 30;
+        const size = 8 + Math.random() * 14;
+        const rotation = Math.random() * 45;
+
+        const newSparkle = {
+          x: latestX + offsetX,
+          y: latestY + offsetY,
+          id: now + Math.random(),
+          born: now,
+          size,
+          rotation,
+          pink: hoveringRef.current,
+        };
+
+        sparklesRef.current = [newSparkle, ...sparklesRef.current].slice(0, SPARKLE_LIMIT);
+        setSparkles([...sparklesRef.current]);
+      }
+
+      // Clean up dead sparkles periodically
+      if (!cleanupTimer) {
+        cleanupTimer = setTimeout(() => {
+          const cutoff = performance.now() - SPARKLE_LIFETIME;
+          sparklesRef.current = sparklesRef.current.filter(s => s.born > cutoff);
+          setSparkles([...sparklesRef.current]);
+          cleanupTimer = null;
+        }, SPARKLE_LIFETIME);
       }
 
       rafId = null;
@@ -73,37 +114,46 @@ export default function CustomCursor() {
       document.body.style.cursor = '';
       style.remove();
       if (rafId) cancelAnimationFrame(rafId);
+      if (cleanupTimer) clearTimeout(cleanupTimer);
     };
   }, [visible]);
 
   if (!visible) return null;
 
+  const now = performance.now();
+
   return (
     <>
-      {/* Trail dots */}
-      {trail.map((t, i) => {
-        const progress = i / TRAIL_LENGTH;
-        const size = Math.max(2, 8 * (1 - progress));
-        const opacity = 0.5 * (1 - progress);
+      {/* Sparkles that fade */}
+      {sparkles.map((s) => {
+        const age = now - s.born;
+        const life = Math.max(0, 1 - age / SPARKLE_LIFETIME);
+        if (life <= 0) return null;
+        // Sparkles drift upward and scale down as they fade
+        const driftY = age * -0.03;
+        const scale = 0.3 + life * 0.7;
+        const opacity = life * 0.8;
         return (
           <div
-            key={t.id}
+            key={s.id}
             style={{
               position: 'fixed',
-              left: t.x,
-              top: t.y,
-              width: `${size}px`,
-              height: `${size}px`,
-              borderRadius: '50%',
-              background: hovering
-                ? `rgba(255, 45, 120, ${opacity})`
-                : `rgba(0, 245, 212, ${opacity})`,
+              left: s.x,
+              top: s.y + driftY,
               pointerEvents: 'none',
               zIndex: 99999,
-              transform: 'translate(-50%, -50%)',
-              willChange: 'left, top',
+              transform: `translate(-50%, -50%) scale(${scale})`,
+              opacity,
+              transition: 'opacity 0.1s',
             }}
-          />
+          >
+            <StarSVG
+              size={s.size}
+              color={s.pink ? '#ff2d78' : '#00f5d4'}
+              opacity={1}
+              rotation={s.rotation}
+            />
+          </div>
         );
       })}
 
