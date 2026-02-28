@@ -162,26 +162,6 @@ export default function HeroSection() {
         }}
       >
         <motion.div
-          initial={{ opacity: 0, y: -30, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div
-            className="hero-subtitle-pulse"
-            style={{
-              fontFamily: "'Press Start 2P', monospace",
-              fontSize: 'clamp(0.5rem, 1.5vw, 0.9rem)',
-              color: 'var(--teal)',
-              letterSpacing: '8px',
-              marginBottom: '18px',
-              textShadow: '0 0 15px var(--teal), 0 0 30px rgba(0,245,212,0.3)',
-            }}
-          >
-            ★ NEW ENGLAND ★
-          </div>
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
