@@ -638,21 +638,20 @@ a, button {
   50% { transform: translateY(-4px) scale(1.15); }
 }
 
-/* Sparkle traveling along divider line */
-.hero-divider-sparkle {
-  position: absolute;
-  top: -4px;
-  width: 10px;
-  height: 10px;
-  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,45,120,0.5) 50%, transparent 70%);
-  border-radius: 50%;
-  animation: divider-sparkle-travel 3s ease-in-out infinite;
+/* Pulsing color-rotate divider line */
+.hero-divider-pulse {
+  background: linear-gradient(90deg, transparent, var(--pink), var(--teal), var(--purple-bright), transparent);
+  background-size: 200% 100%;
+  animation: divider-color-rotate 4s ease-in-out infinite, divider-glow-pulse 2s ease-in-out infinite;
 }
-@keyframes divider-sparkle-travel {
-  0%   { left: 5%; opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { left: 95%; opacity: 0; }
+@keyframes divider-color-rotate {
+  0%   { background-position: 0% center; }
+  50%  { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+@keyframes divider-glow-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(255,45,120,0.2), 0 0 12px rgba(0,245,212,0.1); }
+  50%      { box-shadow: 0 0 14px rgba(255,45,120,0.4), 0 0 28px rgba(168,85,247,0.2); }
 }
 
 /* Reduced motion — disable ALL animations for users who prefer it */

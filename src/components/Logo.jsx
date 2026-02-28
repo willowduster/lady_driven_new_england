@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 const sizes = { xs: 32, sm: 48, md: 80, lg: 140, xl: 200, hero: 340 };
 let cachedSvg = null;
 
-export default function Logo({ size = 'md', animate = false, className = '' }) {
+export default memo(function Logo({ size = 'md', animate = false, className = '' }) {
   const px = typeof size === 'number' ? size : (sizes[size] || sizes.md);
   const [svg, setSvg] = useState(cachedSvg);
 
@@ -26,4 +26,4 @@ export default function Logo({ size = 'md', animate = false, className = '' }) {
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
-}
+});

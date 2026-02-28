@@ -260,23 +260,19 @@ export default function HeroSection() {
           ))}
         </div>
 
-        {/* Sparkle divider line */}
+        {/* Pulsing color-rotate divider line */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="hero-divider-pulse"
           style={{
             height: '2px',
             width: '100%',
-            position: 'relative',
-            background: 'linear-gradient(90deg, transparent, var(--pink), var(--teal), var(--pink), transparent)',
             margin: '18px auto',
             transformOrigin: 'center',
-            boxShadow: '0 0 12px rgba(255,45,120,0.3), 0 0 25px rgba(0,245,212,0.15)',
           }}
-        >
-          <div className="hero-divider-sparkle" />
-        </motion.div>
+        />
 
         <motion.p
           initial={{ opacity: 0 }}
