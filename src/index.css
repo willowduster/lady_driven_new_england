@@ -654,6 +654,47 @@ a, button {
   50%      { box-shadow: 0 0 14px rgba(255,45,120,0.4), 0 0 28px rgba(168,85,247,0.2); }
 }
 
+/* ====== Mobile responsive fixes ====== */
+
+/* Event cards — stack on mobile */
+@media (max-width: 768px) {
+  .event-card {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 20px 18px 20px 14px !important;
+  }
+  .event-card .event-date {
+    text-align: left !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .event-card .event-status {
+    text-align: left !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: unset !important;
+  }
+}
+
+/* Community gallery — no span-2 on mobile */
+@media (max-width: 600px) {
+  .community-gallery {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .community-gallery > * {
+    grid-column: span 1 !important;
+    aspect-ratio: 1 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .community-gallery {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* Reduced motion — disable ALL animations for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

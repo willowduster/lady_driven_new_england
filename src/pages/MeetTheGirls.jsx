@@ -53,7 +53,7 @@ export default function MeetTheGirls() {
         </motion.p>
 
         {/* Photo Gallery Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '12px', marginBottom: '60px' }}>
+        <div className="community-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '12px', marginBottom: '60px' }}>
           {gallery.map((item, i) => (
             <motion.div
               key={item.id}

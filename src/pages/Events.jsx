@@ -50,6 +50,7 @@ export default function Events() {
                 borderColor: e.color,
                 boxShadow: `0 0 25px ${e.color}15`,
               }}
+              className="event-card"
               style={{
                 display: 'grid',
                 gridTemplateColumns: '90px 1fr auto',
@@ -70,7 +71,7 @@ export default function Events() {
               <div style={{ position: 'absolute', top: 0, left: '3px', right: 0, height: '1px', background: `linear-gradient(90deg, ${e.color}40, transparent 60%)` }} />
 
               {/* Date */}
-              <div style={{ textAlign: 'center' }}>
+              <div className="event-date" style={{ textAlign: 'center' }}>
                 <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '1rem', color: e.color, textShadow: `0 0 10px ${e.color}`, lineHeight: 1.2 }}>{e.date}</div>
                 <div style={{ fontSize: '0.7rem', fontWeight: 500, color: 'rgba(240,240,255,0.4)', letterSpacing: '1px', marginTop: '4px' }}>{e.year}</div>
               </div>
@@ -86,7 +87,7 @@ export default function Events() {
               </div>
 
               {/* Status */}
-              <div style={{ textAlign: 'right', minWidth: '90px' }}>
+              <div className="event-status" style={{ textAlign: 'right', minWidth: '90px' }}>
                 <div
                   className="hero-subtitle-pulse"
                   style={{ fontSize: '0.7rem', fontWeight: 600, color: e.color, letterSpacing: '1px', marginBottom: '10px', fontFamily: 'Orbitron' }}
