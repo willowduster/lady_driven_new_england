@@ -38,7 +38,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <div className="app">
         <CustomCursor />
         <AnimatePresence mode="wait">
